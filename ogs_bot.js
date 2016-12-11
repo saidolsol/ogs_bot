@@ -10,22 +10,23 @@ var bot = new TelegramBot(token, {polling: true});
 //Asking grandma (if not already done) and making a note of that
 var date = new Date();
 date.setHours(0,0,0,0);
-var checked = fs.readFile('checked.json',function (err, data) {
+date = JSON.stringify(date);
+var checked = fs.readFile('checked.txt',function (err, data) {
    if (err) {
       return console.error(err);
    }
+   if (data === date){
+      bot.sendMessage(variables['family_chatID'][0], "Oma hat noch nicht geantwortet.");	
+   }else{
+      bot.sendMessage(variables['og_chatID'], "Hallo Oma, ist alles in Ordnung?");
+      fs.writeFile('checked.txt', date,  function(err) {
+         if (err) {
+            return console.error(err);
+         }
+      });
+   }
+
 });
-if (checked == date){
-    bot.sendMessage(variables['family_chatID'][0], "Oma hat noch nicht geantwortet.");	
-    
-}else{
-   bot.sendMessage(variables['og_chatID'], "Hallo Oma, ist alles in Ordnung?");
-   fs.writeFile('checked.json', date,  function(err) {
-       if (err) {
-          return console.error(err);
-       }
-   });
-}
 
 
 //Das hier passiert sobald der Bot eine Nachricht bekommt:
