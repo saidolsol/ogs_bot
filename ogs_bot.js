@@ -1,14 +1,27 @@
 var TelegramBot = require('node-telegram-bot-api'); 
-var fs = require('fs');
 var botManager = require('./botManager.js');
 var variables = require('./variables');
 var token = variables['token'];
+var ogs_lib = require('./ogs_lib');
 
 // Setup polling way
 var bot = new TelegramBot(token, {polling: true});
 
 //Asking grandma (if not already done) and making a note of that
-var date = new Date();
+
+ogs_lib.isMessageSentToday(function(err, isSent) {
+
+    if(isSent) {
+
+    } else {
+
+    }
+
+});
+
+  function check(data, width, X, Y) {
+
+      var date = new Date();
 date.setHours(0,0,0,0);
 date = JSON.stringify(date);
 var checked = fs.readFile('checked.txt',function (err, data) {
