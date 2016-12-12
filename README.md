@@ -13,3 +13,8 @@ If the dates dont match, the bot sends a message to granny. He then writes a not
 When grandma replies, that value is set to 1.
 
 If the dates do match, the bot checks the status.js file. If no message has been received yet (the bot reads a 0), the family is notified. If the bot reads a one, nothing happens.
+
+### Libraries
+The bot makes use of these libraries:
+* [node-telegram-bot-api](https://github.com/yagop/node-telegram-bot-api)
+* [fs](https://nodejs.org/api/fs.html)
